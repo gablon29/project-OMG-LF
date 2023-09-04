@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const uuid = require("uuid");
 const PORT = 4000;
 const supertokens = require("supertokens-node");
 const Session = require("supertokens-node/recipe/session");
@@ -11,8 +12,9 @@ const { errorHandler } = require("supertokens-node/framework/express");
 supertokens.init({
   framework: "express",
   supertokens: {
-    connectionURI: "<YOUR_CONNECTION_URL>",
-    apiKey: "<YOUR_API_KEY>",
+    connectionURI:
+      "https://st-dev-cd72ff50-48aa-11ee-adbb-eb54f9de4d30.aws.supertokens.io",
+    apiKey: "-zetjPmrSpPAhiFOLwOn7bpdax",
   },
   appInfo: {
     appName: "meetup-clone",
@@ -48,6 +50,10 @@ app.get("/events", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+function generateID() {
+  return uuid.v4();
+}
 
 const events = [
   {
